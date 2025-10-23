@@ -132,7 +132,17 @@ h1.visible,h2.visible,h3.visible{opacity:1;transform:translateY(0)}
 .family-side {flex: 1;padding: 0 1rem;opacity: 0;}
 .family-side.left {transform: translateX(-80px);animation: slideInLeft 1.4s ease forwards;animation-delay: 0.4s;}
 .family-side.right {transform: translateX(80px);animation: slideInRight 1.4s ease forwards;animation-delay: 0.4s;}
-
+@media (max-width: 414px) {
+  .family-card {
+    padding: 1rem 0.5rem;
+  }
+  .family-side {
+    padding: 0 0.5rem;
+  }
+  .family-side p {
+    font-size: 0.95rem;
+  }
+}
 
 /* Map*/
 .map-btn{display:inline-block;background:linear-gradient(135deg,var(--pastel),var(--gebtle-accent));color:#fff;padding:.55rem 1.2rem;border-radius:40px;text-decoration:none;margin-top:.75rem;border:none;cursor:pointer;font-size:.92rem;transition:transform .25s ease,box-shadow .25s ease}
