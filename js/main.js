@@ -86,11 +86,10 @@ $('.owl-carousel').owlCarousel({
 });
 
 
-// Autoplay audio + opening
+// Autoplay opening
 window.addEventListener('load', () => {
-  const audio = document.getElementById('bgm');
-  if (audio) { audio.play().catch(()=>{}); }
   runOpening();
+  setTimeout(initMusicAutoplay, 800);
 });
 
 
@@ -187,7 +186,6 @@ function runOpening(){
   }, 4200);
 }
 
-
 // Hearts
 function spawnHearts(n, durationSec){
   const container = document.getElementById('hearts');
@@ -211,6 +209,41 @@ function spawnHearts(n, durationSec){
     container.appendChild(s);
     setTimeout(()=> s.remove(), (dur + delay + 0.2)*1000);
   }
+}
+
+function initMusicAutoplay() {
+  const audio = document.getElementById('bgm');
+  const musicBtn = document.getElementById('musicToggle');
+  if (!audio) return;
+
+  // Thử phát tự động (PC)
+  audio.play().then(() => {
+    if (musicBtn) {
+      musicBtn.classList.add('music-on');
+      musicBtn.classList.remove('music-off');
+    }
+  }).catch(() => {
+    // Nếu bị chặn → chờ tương tác đầu tiên
+    const enableAudio = () => {
+      audio.play().then(() => {
+        if (musicBtn) {
+          musicBtn.classList.add('music-on');
+          musicBtn.classList.remove('music-off');
+        }
+      }).catch(()=>{});
+      document.removeEventListener('touchstart', enableAudio);
+      document.removeEventListener('click', enableAudio);
+      document.removeEventListener('scroll', enableAudio);
+    };
+    document.addEventListener('touchstart', enableAudio, { once: true });
+    document.addEventListener('click', enableAudio, { once: true });
+    document.addEventListener('scroll', enableAudio, { once: true });
+
+    if (musicBtn) {
+      musicBtn.classList.remove('music-on');
+      musicBtn.classList.add('music-off');
+    }
+  });
 }
 
 // Floating Buttons (music + scroll top)
