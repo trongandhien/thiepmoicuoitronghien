@@ -1,5 +1,15 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzA0di3OxHZx5SOC-0fmZik8WESgMKuAnvwLhYuWaJZ_-zFK-tnPiuBim_LYhzL-9PabA/exec';
 
+lightbox.option({
+  'resizeDuration': 300,
+  'fadeDuration': 200,
+  'imageFadeDuration': 200,
+  'wrapAround': true,
+  'positionFromTop': 80,
+  'disableScrolling': true
+});
+
+
 /* Reveal */
 const revealObserver = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
@@ -23,7 +33,7 @@ const hero = document.getElementById('hero');
 let slideOn = false;
 function toggleHero(){ slideOn = !slideOn; hero.classList.toggle('slide', slideOn); }
 toggleHero();
-setInterval(toggleHero, 7000);
+setInterval(toggleHero, 3000);
 
 /* Countdown */
 const cd = document.getElementById('countdown');
@@ -60,13 +70,16 @@ $('.owl-carousel').owlCarousel({
   items: 1,
   loop: true,
   autoplay: true,
-  autoplayTimeout: 4500,
+  autoplayTimeout: 2500,
   smartSpeed: 900,
   dots: true,
   autoplayHoverPause: true,
   animateOut: 'fadeOut',
   animateIn: 'fadeIn'
+}).on('initialized.owl.carousel', function() {
+  $('.owl-item.cloned a').removeAttr('data-lightbox');
 });
+
 
 /* Timeline */
 const tlItems = document.querySelectorAll('.timeline-item');
@@ -189,13 +202,11 @@ function initMusicAutoplay(){
   const musicBtn = document.getElementById('musicToggle');
   if (!audio || !musicBtn) return;
 
-  // thử phát sau khi mở thiệp giảm tải
   const tryPlay = () => {
     audio.play().then(()=>{
       musicBtn.classList.remove('music-off');
       musicBtn.classList.add('music-on');
     }).catch(()=>{
-      // chờ tương tác người dùng
       const enable = () => {
         audio.play().then(()=>{
           musicBtn.classList.remove('music-off');
@@ -239,22 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
-/* Viet phuc gallery reveal */
-(() => {
-  const vietItems = document.querySelectorAll('.vietphuc-item');
-  if (!vietItems.length) return;
-  vietItems.forEach((el,i)=> el.classList.add(i%2===0?'left':'right'));
-  const vietObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const delay = entry.target.classList.contains('right') ? 200 : 0;
-      setTimeout(() => entry.target.classList.add('visible'), delay);
-      vietObserver.unobserve(entry.target);
-    });
-  }, { threshold: 0.2 });
-  vietItems.forEach(item => vietObserver.observe(item));
-})();
 
 /* Autoplay opening + nhạc sau khi load */
 window.addEventListener('load', () => {
