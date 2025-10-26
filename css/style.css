@@ -85,10 +85,10 @@ h1.visible,h2.visible,h3.visible{opacity:1;transform:translateY(0)}
 @media(max-width:414px){.family-card{padding:1rem .5rem}.family-side{padding:0 .5rem}.family-side p{font-size:.9rem}}
 
 /* Map */
-.map-btn{display:inline-block;background:linear-gradient(135deg,var(--pastel),var(--gebtle-accent));color:#fff;padding:.55rem 1.2rem;border-radius:40px;text-decoration:none;margin-top:.75rem;border:none;cursor:pointer;font-size:.92rem;transition:transform .2s ease}
-.map-btn:hover{transform:scale(1.02)}
-.map-thumb{margin-top:.8rem;border-radius:12px;overflow:hidden;border:2px solid var(--pastel)}
-.map-thumb iframe{width:100%;height:220px;border:0;display:block;border-radius:10px}
+.map-btn{display:inline-block;background:linear-gradient(135deg,var(--pastel),var(--gebtle-accent));color:#fff;padding:.55rem 1.2rem;border-radius:40px;text-decoration:none;margin-top:.75rem;border:none;cursor:pointer;font-size:.92rem;transition:transform .25s ease,box-shadow .25s ease}
+.map-btn:hover{transform:scale(1.04);box-shadow:0 4px 15px rgba(0,0,0,.15)}
+.map-thumb {margin-top: 0.8rem;border-radius: 12px;overflow: hidden;box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);border: 2px solid var(--pastel);}
+.map-thumb iframe {width: 100%;height: 220px;border: 0;display: block;border-radius: 10px;}
 
 /* Album */
 .carousel-wrap{margin:1rem auto 0;max-width:100%;border-radius:14px;overflow:hidden}
@@ -154,41 +154,32 @@ h1.visible,h2.visible,h3.visible{opacity:1;transform:translateY(0)}
 @keyframes poemSlideLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
 @keyframes poemSlideRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
 
-/* VIET PHUC GALLERY */
-.vietphuc-gallery{text-align:center;margin-top:2rem;overflow:hidden}
-.vietphuc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;max-width:var(--max-w);margin:0 auto}
-.vietphuc-item{overflow:hidden;border-radius:14px;opacity:0;transform:translateX(0);transition:opacity .7s ease,transform .7s ease}
-.vietphuc-item:nth-child(odd){margin-top:1.2rem}
-.vietphuc-item:nth-child(even){margin-bottom:1.2rem}
-.vietphuc-item.left{transform:translateX(-60px)}
-.vietphuc-item.right{transform:translateX(60px)}
-.vietphuc-item.visible{opacity:1;transform:translateX(0)}
-.vietphuc-item img{width:100%;height:100%;display:block;object-fit:cover;aspect-ratio:3/4}
-@media(max-width:414px){
-  .vietphuc-grid{grid-template-columns:repeat(2,1fr);transform:scale(.96);transform-origin:top center}
-  .vietphuc-item:nth-child(odd),.vietphuc-item:nth-child(even){margin:.6rem 0}
-}
-
-/* Gift grid */
-#gift .grid{display:grid !important;grid-template-columns:1fr 1fr;gap:1rem;max-width:100%;margin:.25rem auto 0}
-@media(max-width:360px){#gift .grid{grid-template-columns:1fr}}
-.card-grid{background:#fff;border-radius:16px;overflow:hidden;text-align:center}
+/* Grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:100%;margin:.25rem auto 0}
+@media(max-width:414px){.grid{grid-template-columns:1fr}}
+.card-grid{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:transform .3s ease,box-shadow .3s ease;text-align:center}
+.card-grid:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
+.card-grid .thumb{width:160px;height:160px;margin:1rem auto 0;border-radius:50%;object-fit:cover;border:4px solid var(--pastel);box-shadow:0 6px 15px rgba(0,0,0,.08)}
+@media(min-width:600px){.card-grid .thumb{width:180px;height:180px}}
 .card-grid .body{padding:1rem 1rem 1.25rem}
 .card-grid .body p{margin:.35rem 0;font-size:.95rem}
-#gift .gift-card .body p{white-space:nowrap;overflow:visible;text-overflow:unset;font-size:clamp(.8rem,2.6vw,1rem);line-height:1.3}
-#gift .gift-card .account{display:inline-block;font-weight:600;font-size:clamp(.9rem,3vw,1.1rem);letter-spacing:1px}
-.copy-btn{display:inline-block;background:linear-gradient(135deg,var(--pastel),var(--gebtle-accent));color:#fff;padding:.55rem 1.2rem;border-radius:40px;border:none;cursor:pointer;font-size:.92rem;transition:transform .2s ease}
-.copy-btn:hover{transform:scale(1.02)}
+
+.copy-btn{display:inline-block;background:linear-gradient(135deg,var(--pastel),var(--gebtle-accent));color:#fff;padding:.55rem 1.2rem;border-radius:40px;text-decoration:none;margin-top:.75rem;border:none;cursor:pointer;font-size:.92rem;transition:transform .25s ease,box-shadow .25s ease}
+.copy-btn:hover{transform:scale(1.04);box-shadow:0 4px 15px rgba(0,0,0,.15)}
 .gift-card .qr{width:160px;height:160px;border-radius:12px;background:#fff;padding:6px;margin:.5rem auto;display:block}
 .gift-to{font-size:1.05rem;color:var(--pastel);margin-top:.4rem}
 
+
 /* Wish */
-.wish-container{width:100%;max-height:300px;overflow-y:auto;border:1px solid #f3c2d2;border-radius:10px;background:#fff4f7;padding:.5rem;scroll-behavior:smooth;margin-top:28px}
-.wish-container .grid{display:flex;flex-direction:column;gap:.75rem}
-.wish-item b{display:block;color:var(--gebtle-accent);font-size:.95rem;margin-bottom:.25rem}
-.wish-item p{margin:0;font-size:.95rem;line-height:1.35;color:#333;white-space:pre-wrap}
-.wish-container::-webkit-scrollbar{width:6px}
-.wish-container::-webkit-scrollbar-thumb{background:var(--gebtle-accent);border-radius:6px}
+.wish-container {width: 100%;max-height: 300px;overflow-y: auto;border: 1px solid #f3c2d2;border-radius: 10px;background: #fff4f7;padding: 0.5rem;scroll-behavior: smooth;margin-top: 28px;}
+.grid {display: flex;flex-direction: column;gap: 0.75rem;}
+.card-grid {background: #ffffff;border-radius: 10px;border: 1px solid #f7d8e2;box-shadow: 0 2px 6px rgba(0,0,0,0.05);padding: 0.75rem 1rem;color: #444;word-break: break-word;}
+.wish-item b {display: block;color: var(--gebtle-accent);font-size: 0.95rem;margin-bottom: 0.25rem;}
+.wish-item p {margin: 0;font-size: 0.5rem;line-height: 1.2rem;color: #333;white-space: pre-wrap;}
+.wish-container::-webkit-scrollbar {width: 6px;}
+.wish-container::-webkit-scrollbar-thumb {background: var(--gebtle-accent);border-radius: 6px;}
+.wish-container::-webkit-scrollbar-thumb:hover {background: #e17ba6;}
+@media (max-width: 768px) {.wish-container {max-height: 280px;}.card-grid {padding: 0.6rem 0.8rem;}}
 
 /* Footer */
 footer{position:relative;overflow:hidden;margin:1rem auto;width:100%;max-width:600px;text-align:center;color:var(--text)}
